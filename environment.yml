@@ -1,0 +1,16 @@
+name: rnaseq-deseq2-workflow
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  - r-base
+  - r-tidyverse
+  - r-pheatmap
+  - r-ggrepel
+  - bioconductor-deseq2
+  - bioconductor-airway
+  - bioconductor-apeglm
+  - bioconductor-org.hs.eg.db

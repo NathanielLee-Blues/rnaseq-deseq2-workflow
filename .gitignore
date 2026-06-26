@@ -1,0 +1,16 @@
+.Rhistory
+.RData
+.Rproj.user
+.venv/
+__pycache__/
+
+#Large sequencing files
+data/raw/*.fastq
+data/raw/*.fastq.gz
+data/raw/*.bam
+data/raw/*.sam
+
+#Temp outputs
+*.tmp
+*.log
+
