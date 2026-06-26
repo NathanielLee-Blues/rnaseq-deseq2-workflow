@@ -118,6 +118,17 @@ Rscript scripts/03_visualisation.R
 | `figures/volcano_plot.png`       | Volcano plot of differential expression results      |
 | `figures/top30_gene_heatmap.png` | Heatmap of the top 30 differentially expressed genes |
 
+## Interpretation summary
+
+The analysis shows a clear transcriptional response to dexamethasone treatment in human airway smooth muscle cells.
+
+After low-count filtering, DESeq2 tested **22,369 genes** and identified **2,694 significantly differentially expressed genes** at adjusted p-value `< 0.05`. This suggests that dexamethasone treatment leads to broad gene expression changes, consistent with its role as a glucocorticoid affecting inflammatory, regulatory, and cellular signalling pathways.
+
+The PCA plot provides an overview of sample-level variation and helps assess whether treated and untreated samples separate by expression profile. The MA plot and volcano plot show the relationship between expression level, fold change, and statistical significance, highlighting genes with the strongest treatment-associated changes. The heatmap of top differentially expressed genes provides a visual check of whether the most significant genes distinguish treated from untreated samples.
+
+Overall, this workflow demonstrates how RNA-seq count data can be processed, statistically analysed, visualised, and interpreted using DESeq2. For a fuller interpretation of the results, figures, and limitations, see [`docs/INTERPRETATION.md`](docs/INTERPRETATION.md).
+
+
 ## Skills demonstrated
 
 This project demonstrates:
