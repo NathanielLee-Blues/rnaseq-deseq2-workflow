@@ -2,7 +2,7 @@
 
 ![R](https://img.shields.io/badge/R-DESeq2-blue)
 ![Bioinformatics](https://img.shields.io/badge/Bioinformatics-RNA--seq-purple)
-![Status](https://img.shields.io/badge/Status-In%20development-lightgrey)
+![Status](https://img.shields.io/badge/Status-Reproducible%20analysis-lightgrey)
 
 ## Project overview
 
@@ -10,11 +10,15 @@ This repository demonstrates a reproducible RNA-seq differential expression work
 
 The project analyses gene-level RNA-seq count data from the Bioconductor `airway` dataset, comparing dexamethasone-treated and untreated human airway smooth muscle cells.
 
-This project is intended to demonstrate core transcriptomics skills, including count matrix handling, metadata inspection, differential expression analysis, visualisation, and biological interpretation.
+This project demonstrates core transcriptomics skills, including count matrix handling, metadata inspection, differential expression analysis, visualisation, and biological interpretation.
+
+## Headline result
+
+The DESeq2 workflow tested **22,369 genes** and identified **2,694 genes** as significantly differentially expressed at adjusted p-value `< 0.05`.
 
 ## Aim
 
-To identify differentially expressed genes between treated and untreated airway smooth muscle cell samples using a standard RNA-seq differential expression workflow.
+To identify differentially expressed genes between dexamethasone-treated and untreated airway smooth muscle cell samples using a standard RNA-seq differential expression workflow.
 
 ## Workflow
 
@@ -32,11 +36,29 @@ PCA / MA plot / volcano plot / heatmap
 Biological interpretation
 ```
 
-Repository structure
+## Example outputs
+
+### PCA plot
+
+![PCA plot](figures/pca_plot.png)
+
+### Volcano plot
+
+![Volcano plot](figures/volcano_plot.png)
+
+### MA plot
+
+![MA plot](figures/ma_plot.png)
+
+### Heatmap of top differentially expressed genes
+
+![Top 30 gene heatmap](figures/top30_gene_heatmap.png)
+
+## Repository structure
+
 ```text
 rnaseq-deseq2-workflow/
 ├── data/
-│   ├── raw/
 │   └── processed/
 ├── scripts/
 │   ├── 01_load_airway_data.R
@@ -51,24 +73,70 @@ rnaseq-deseq2-workflow/
 ├── environment.yml
 └── README.md
 ```
-Planned outputs
 
-This project will generate:
+## Data
 
-processed count matrix
-sample metadata table
-DESeq2 results table
-PCA plot
-MA plot
-volcano plot
-heatmap of top differentially expressed genes
-short interpretation of key findings
-Skills demonstrated
-RNA-seq differential expression analysis
-DESeq2 workflow design
-count matrix and metadata handling
-data normalisation
-exploratory data visualisation
-statistical testing in R
-biological interpretation of gene expression results
-reproducible GitHub project organisation
+The workflow uses the Bioconductor `airway` dataset.
+
+The first script loads the dataset directly in R and exports processed analysis files.
+
+Generated processed files include:
+
+| File                                          | Description                           |
+| --------------------------------------------- | ------------------------------------- |
+| `data/processed/airway_counts.csv`            | Raw gene count matrix                 |
+| `data/processed/airway_metadata.csv`          | Sample metadata                       |
+| `data/processed/airway_normalised_counts.csv` | DESeq2-normalised counts              |
+| `data/processed/airway_vst_counts.csv`        | Variance-stabilised expression matrix |
+| `data/processed/deseq2_dds.rds`               | Saved DESeq2 dataset object           |
+
+## How to run the workflow
+
+Run the scripts from the repository root:
+
+```bash
+Rscript scripts/01_load_airway_data.R
+Rscript scripts/02_deseq2_analysis.R
+Rscript scripts/03_visualisation.R
+```
+
+## Generated outputs
+
+### Results tables
+
+| Output                                                   | Description                                     |
+| -------------------------------------------------------- | ----------------------------------------------- |
+| `results/tables/airway_dataset_summary.csv`              | Summary of genes, samples, and treatment groups |
+| `results/tables/deseq2_results_treated_vs_untreated.csv` | Full DESeq2 results table                       |
+
+### Figures
+
+| Output                           | Description                                          |
+| -------------------------------- | ---------------------------------------------------- |
+| `figures/pca_plot.png`           | PCA plot of RNA-seq samples                          |
+| `figures/ma_plot.png`            | MA plot of DESeq2 results                            |
+| `figures/volcano_plot.png`       | Volcano plot of differential expression results      |
+| `figures/top30_gene_heatmap.png` | Heatmap of the top 30 differentially expressed genes |
+
+## Skills demonstrated
+
+This project demonstrates:
+
+* RNA-seq differential expression analysis
+* DESeq2 workflow design
+* count matrix and metadata handling
+* data normalisation
+* exploratory data visualisation
+* statistical testing in R
+* biological interpretation of gene expression results
+* reproducible GitHub project organisation
+
+## Notes on reproducibility
+
+This is a count-level RNA-seq workflow rather than a raw FASTQ-to-counts pipeline.
+
+The purpose of this repository is to demonstrate differential expression analysis, visualisation, and interpretation using processed gene-level RNA-seq counts. A future project can extend this portfolio with a full FASTQ-to-counts workflow using tools such as FastQC, STAR or HISAT2, featureCounts, and Snakemake.
+
+## Project status
+
+Version 1 complete: initial DESeq2 workflow, results tables, and figures generated.
